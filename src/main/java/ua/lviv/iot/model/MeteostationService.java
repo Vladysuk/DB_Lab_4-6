@@ -1,14 +1,14 @@
 package ua.lviv.iot.model;
 
-import ua.lviv.iot.model.annotation.Column;
-import ua.lviv.iot.model.annotation.PrimaryKey;
-import ua.lviv.iot.model.annotation.Table;
 
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity(name = "MeteostationService")
 @Table(name = "meteostation_service")
 public class MeteostationService {
-    @PrimaryKey
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @Column(name = "service_description")
@@ -77,12 +77,12 @@ public class MeteostationService {
 
     @Override
     public String toString() {
-        return "MeteostationService{" +
+        return "MeteostationService[" +
                 "id=" + id +
                 ", serviceDescription='" + serviceDescription + '\'' +
                 ", serviceDate=" + serviceDate +
                 ", isRegular=" + isRegular +
                 ", meteostationId=" + meteostationId +
-                '}';
+                ']';
     }
 }

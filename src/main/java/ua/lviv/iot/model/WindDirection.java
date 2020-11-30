@@ -1,13 +1,12 @@
 package ua.lviv.iot.model;
 
-import ua.lviv.iot.model.annotation.Column;
-import ua.lviv.iot.model.annotation.PrimaryKey;
-import ua.lviv.iot.model.annotation.Table;
+import javax.persistence.*;
 
+@Entity(name = "WindDirection")
 @Table(name = "wind_direction")
-// TODO: mb u should use enum
 public class WindDirection {
-    @PrimaryKey
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @Column(name = "direction", length = 3)
@@ -44,9 +43,9 @@ public class WindDirection {
     @Override
     public String
     toString() {
-        return "WindDirection{" +
+        return "WindDirection[" +
                 "id=" + id +
                 ", direction='" + direction + '\'' +
-                '}';
+                ']';
     }
 }

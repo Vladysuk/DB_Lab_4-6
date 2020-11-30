@@ -171,14 +171,16 @@ public class View {
     private void deleteCity() throws SQLException {
         System.out.println("\nEnter ID for a city you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(cityController.delete(id));
+        cityController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createCity() throws SQLException {
         System.out.println("\nEnter city name");
         String cityName = INPUT.next();
         City city = new City(cityName);
-        System.out.println(cityController.create(city));
+        cityController.create(city);
+        System.out.println("Created");
     }
 
     private void updateCities() throws SQLException {
@@ -187,7 +189,8 @@ public class View {
         System.out.println("\nEnter city name");
         String cityName = INPUT.next();
         City city = new City(id, cityName);
-        System.out.println(cityController.update(city));
+        cityController.update(city);
+        System.out.println("Updated");
     }
 
     private void getAllDataIntervals() throws SQLException {
@@ -204,7 +207,8 @@ public class View {
     private void deleteDataInterval() throws SQLException {
         System.out.println("\nEnter ID for an data interval you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(dataIntervalController.delete(id));
+        dataIntervalController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createDataInterval() throws SQLException {
@@ -215,7 +219,8 @@ public class View {
         System.out.println("\nEnter seconds");
         int seconds = INPUT.nextInt();
         DataInterval dataInterval = new DataInterval(hours, minutes, seconds);
-        System.out.println(dataIntervalController.create(dataInterval));
+        dataIntervalController.create(dataInterval);
+        System.out.println("Created");
     }
 
     private void updateDataInterval() throws SQLException {
@@ -228,7 +233,8 @@ public class View {
         System.out.println("\nEnter seconds");
         int seconds = INPUT.nextInt();
         DataInterval dataInterval = new DataInterval(id, hours, minutes, seconds);
-        System.out.println(dataIntervalController.update(dataInterval));
+        dataIntervalController.update(dataInterval);
+        System.out.println("Updated");
     }
 
     private void getAllManufacturerAddresses() throws SQLException {
@@ -245,7 +251,8 @@ public class View {
     private void deleteManufacturerAddress() throws SQLException {
         System.out.println("\nEnter ID for manufacturer address you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(manufacturerAddressController.delete(id));
+        manufacturerAddressController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createManufacturerAddress() throws SQLException {
@@ -254,7 +261,8 @@ public class View {
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
         ManufacturerAddress manufacturerAddress = new ManufacturerAddress(buildingNumber, streetId);
-        System.out.println(manufacturerAddressController.create(manufacturerAddress));
+        manufacturerAddressController.create(manufacturerAddress);
+        System.out.println("Created");
     }
 
     private void updateManufacturerAddress() throws SQLException {
@@ -265,7 +273,8 @@ public class View {
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
         ManufacturerAddress manufacturerAddress = new ManufacturerAddress(id, buildingNumber, streetId);
-        System.out.println(manufacturerAddressController.update(manufacturerAddress));
+        manufacturerAddressController.update(manufacturerAddress);
+        System.out.println("Updated");
     }
 
     private void getAllWindDirections() throws SQLException {
@@ -282,14 +291,16 @@ public class View {
     private void deleteWindDirection() throws SQLException {
         System.out.println("\nEnter ID for wind direction you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(windDirectionController.delete(id));
+        windDirectionController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createWindDirection() throws SQLException {
         System.out.println("\nEnter direction");
         String direction = INPUT.next();
         WindDirection windDirection = new WindDirection(direction);
-        System.out.println(windDirectionController.create(windDirection));
+        windDirectionController.create(windDirection);
+        System.out.println("Created");
     }
 
     private void updateWindDirection() throws SQLException {
@@ -298,7 +309,8 @@ public class View {
         System.out.println("\nEnter direction");
         String direction = INPUT.next();
         WindDirection windDirection = new WindDirection(id, direction);
-        System.out.println(windDirectionController.create(windDirection));
+        windDirectionController.create(windDirection);
+        System.out.println("Updated");
     }
 
     private void getAllMeteostations() throws SQLException {
@@ -315,7 +327,8 @@ public class View {
     private void deleteMeteostation() throws SQLException {
         System.out.println("\nEnter ID for meteostation you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(meteostationController.delete(id));
+        meteostationController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createMeteostation() throws SQLException {
@@ -330,7 +343,8 @@ public class View {
         System.out.println("\nEnter meteostation code");
         int dataIntervalId = INPUT.nextInt();
         Meteostation meteostation = new Meteostation(meteostationCode, Date.valueOf(installationDate), meteostationLocationId, meteostationManufacturerId, dataIntervalId);
-        System.out.println(meteostationController.create(meteostation));
+        meteostationController.create(meteostation);
+        System.out.println("Created");
     }
 
     private void updateMeteostation() throws SQLException {
@@ -347,7 +361,8 @@ public class View {
         System.out.println("\nEnter meteostation code");
         int dataIntervalId = INPUT.nextInt();
         Meteostation meteostation = new Meteostation(id, meteostationCode, Date.valueOf(installationDate), meteostationLocationId, meteostationManufacturerId, dataIntervalId);
-        System.out.println(meteostationController.update(meteostation));
+        meteostationController.update(meteostation);
+        System.out.println("Updated");
     }
 
     private void getAllMeteostationData() throws SQLException {
@@ -364,7 +379,8 @@ public class View {
     private void deleteMeteostationData() throws SQLException {
         System.out.println("\nEnter ID for meteostation data you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(meteostationDataController.delete(id));
+        meteostationDataController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createMeteostationData() throws SQLException {
@@ -382,7 +398,8 @@ public class View {
         int meteostationId = INPUT.nextInt();
         MeteostationData meteostationData = new MeteostationData(temperature, humidity, windSpeed,
                 atmosphericPressure, windDirectionId, meteostationId);
-        System.out.println(meteostationDataController.create(meteostationData));
+        meteostationDataController.create(meteostationData);
+        System.out.println("Created");
     }
 
     private void updateMeteostationData() throws SQLException {
@@ -402,7 +419,8 @@ public class View {
         int meteostationId = INPUT.nextInt();
         MeteostationData meteostationData = new MeteostationData(id, temperature, humidity, windSpeed,
                 atmosphericPressure, windDirectionId, meteostationId);
-        System.out.println(meteostationDataController.update(meteostationData));
+        meteostationDataController.update(meteostationData);
+        System.out.println("Updated");
     }
 
     private void getAllMeteostationLocations() throws SQLException {
@@ -419,7 +437,8 @@ public class View {
     private void deleteMeteostationLocation() throws SQLException {
         System.out.println("\nEnter ID for meteostation location you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(meteostationLocationController.delete(id));
+        meteostationLocationController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createMeteostationLocation() throws SQLException {
@@ -428,7 +447,8 @@ public class View {
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
         MeteostationLocation meteostationLocation = new MeteostationLocation(gpsLocation, streetId);
-        System.out.println(meteostationLocationController.create(meteostationLocation));
+        meteostationLocationController.create(meteostationLocation);
+        System.out.println("Created");
     }
 
     private void updateMeteostationLocation() throws SQLException {
@@ -439,7 +459,8 @@ public class View {
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
         MeteostationLocation meteostationLocation = new MeteostationLocation(id, gpsLocation, streetId);
-        System.out.println(meteostationLocationController.update(meteostationLocation));
+        meteostationLocationController.update(meteostationLocation);
+        System.out.println("Updated");
     }
 
     private void getAllMeteostationManufacturers() throws SQLException {
@@ -456,7 +477,8 @@ public class View {
     private void deleteMeteostationManufacturer() throws SQLException {
         System.out.println("\nEnter ID for the salary you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(meteostationManufacturerController.delete(id));
+        meteostationManufacturerController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createMeteostationManufacturer() throws SQLException {
@@ -469,7 +491,8 @@ public class View {
         System.out.println("\nEnter address id");
         int addressId = INPUT.nextInt();
         MeteostationManufacturer meteostationManufacturer = new MeteostationManufacturer(name, phone, email, addressId);
-        System.out.println(meteostationManufacturerController.create(meteostationManufacturer));
+        meteostationManufacturerController.create(meteostationManufacturer);
+        System.out.println("Created");
     }
 
     private void updateMeteostationManufacturer() throws SQLException {
@@ -484,7 +507,8 @@ public class View {
         System.out.println("\nEnter address id");
         int addressId = INPUT.nextInt();
         MeteostationManufacturer meteostationManufacturer = new MeteostationManufacturer(id, name, phone, email, addressId);
-        System.out.println(meteostationManufacturerController.update(meteostationManufacturer));
+        meteostationManufacturerController.update(meteostationManufacturer);
+        System.out.println("Updated");
     }
 
     private void getAllMeteostationServices() throws SQLException {
@@ -501,7 +525,8 @@ public class View {
     private void deleteMeteostationService() throws SQLException {
         System.out.println("\nEnter ID for meteostation service you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(meteostationServiceController.delete(id));
+        meteostationServiceController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createMeteostationService() throws SQLException {
@@ -514,7 +539,8 @@ public class View {
         System.out.println("\nEnter meteostation id");
         int meteostationId = INPUT.nextInt();
         MeteostationService meteostationService = new MeteostationService(serviceDescription, Date.valueOf(serviceDate), isRegular, meteostationId);
-        System.out.println(meteostationServiceController.create(meteostationService));
+        meteostationServiceController.create(meteostationService);
+        System.out.println("Created");
     }
 
     private void updateMeteostationService() throws SQLException {
@@ -529,7 +555,8 @@ public class View {
         System.out.println("\nEnter meteostation id");
         int meteostationId = INPUT.nextInt();
         MeteostationService meteostationService = new MeteostationService(id, serviceDescription, Date.valueOf(serviceDate), isRegular, meteostationId);
-        System.out.println(meteostationServiceController.update(meteostationService));
+        meteostationServiceController.update(meteostationService);
+        System.out.println("Updated");
     }
 
     private void getAllStreets() throws SQLException {
@@ -546,7 +573,8 @@ public class View {
     private void deleteStreet() throws SQLException {
         System.out.println("\nEnter ID for street you want to delete");
         int id = INPUT.nextInt();
-        System.out.println(streetController.delete(id));
+        streetController.deleteBy(id);
+        System.out.println("Deleted");
     }
 
     private void createStreet() throws SQLException {
@@ -555,7 +583,8 @@ public class View {
         System.out.println("\nEnter city ID");
         int cityId = INPUT.nextInt();
         Street street = new Street(streetName, cityId);
-        System.out.println(streetController.create(street));
+        streetController.create(street);
+        System.out.println("Created");
     }
 
     private void updateStreet() throws SQLException {
@@ -566,7 +595,8 @@ public class View {
         System.out.println("\nEnter city ID");
         int cityId = INPUT.nextInt();
         Street street = new Street(id, streetName, cityId);
-        System.out.println(streetController.update(street));
+        streetController.update(street);
+        System.out.println("Updated");
     }
 
     private void outputMenu() {
@@ -590,7 +620,8 @@ public class View {
             try {
                 methodsMenu.get(keyMenu).print();
             }
-            catch (Exception ignored){
+            catch (Exception e){
+                e.printStackTrace();
             }
             outputSubMenu();
         } while (!keyMenu.equals("Q"));

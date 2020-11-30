@@ -1,15 +1,15 @@
 package ua.lviv.iot.model;
 
-import ua.lviv.iot.model.annotation.Column;
-import ua.lviv.iot.model.annotation.PrimaryKey;
-import ua.lviv.iot.model.annotation.Table;
 
+import javax.persistence.*;
+
+@Entity(name = "DataInterval")
 @Table(name = "data_interval")
 public class DataInterval {
-    @PrimaryKey
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    //    TODO: default value 2
     @Column(name = "hours")
     private Integer hours;
     @Column(name = "minutes")
@@ -65,11 +65,12 @@ public class DataInterval {
 
     @Override
     public String toString() {
-        return "DataInterval{" +
+        return "DataInterval[" +
                 "id=" + id +
                 ", hours=" + hours +
                 ", minutes=" + minutes +
                 ", seconds=" + seconds +
-                '}';
+                ']';
     }
+
 }

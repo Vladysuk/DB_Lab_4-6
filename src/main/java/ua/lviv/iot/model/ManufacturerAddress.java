@@ -1,12 +1,14 @@
 package ua.lviv.iot.model;
 
-import ua.lviv.iot.model.annotation.Column;
-import ua.lviv.iot.model.annotation.PrimaryKey;
-import ua.lviv.iot.model.annotation.Table;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity(name = "ManufacturerAddress")
 @Table(name = "manufacturer_address")
 public class ManufacturerAddress {
-    @PrimaryKey
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @Column(name = "building_number", length = 20)
@@ -51,6 +53,13 @@ public class ManufacturerAddress {
         this.streetId = streetId;
     }
 
-
+    @Override
+    public String toString() {
+        return "ManufacturerAddress[" +
+                "id=" + id +
+                ", buildingNumber='" + buildingNumber + '\'' +
+                ", streetId=" + streetId +
+                ']';
+    }
 
 }

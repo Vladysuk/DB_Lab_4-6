@@ -17,27 +17,37 @@ public class MeteostationData {
     private Float windSpeed;
     @Column(name = "atmospheric_pressure")
     private Float atmosphericPressure;
-    @Column(name = "wind_direction_id")
-    private Integer windDirectionId;
-    @Column(name = "meteostaion_id")
-    private Integer meteostationId;
+
+    @ManyToOne
+    @JoinColumn(name = "wind_direction_id")
+    private WindDirection windDirection;
+
+    @ManyToOne
+    @JoinColumn(name = "meteostation_id")
+    private Meteostation meteostation;
 
     public MeteostationData() {
     }
 
-    public MeteostationData(Float temperature, Float humidity, Float windSpeed, Float atmosphericPressure, Integer windDirectionId, Integer meteostationId) {
-        this(-1, temperature, humidity, windSpeed, atmosphericPressure, windDirectionId, meteostationId);
+    public MeteostationData(Float temperature, Float humidity, Float windSpeed, Float atmosphericPressure,
+                            WindDirection windDirection, Meteostation meteostation) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.windSpeed = windSpeed;
+        this.atmosphericPressure = atmosphericPressure;
+        this.windDirection = windDirection;
+        this.meteostation = meteostation;
     }
 
     public MeteostationData(Integer id, Float temperature, Float humidity, Float windSpeed, Float atmosphericPressure,
-                            Integer windDirectionId, Integer meteostationId) {
+                            WindDirection windDirection, Meteostation meteostation) {
         this.id = id;
         this.temperature = temperature;
         this.humidity = humidity;
         this.windSpeed = windSpeed;
         this.atmosphericPressure = atmosphericPressure;
-        this.windDirectionId = windDirectionId;
-        this.meteostationId = meteostationId;
+        this.windDirection = windDirection;
+        this.meteostation = meteostation;
     }
 
     public Integer getId() {
@@ -80,20 +90,20 @@ public class MeteostationData {
         this.atmosphericPressure = atmosphericPressure;
     }
 
-    public Integer getWindDirectionId() {
-        return windDirectionId;
+    public WindDirection getWindDirection() {
+        return windDirection;
     }
 
-    public void setWindDirectionId(Integer windDirectionId) {
-        this.windDirectionId = windDirectionId;
+    public void setWindDirection(WindDirection windDirection) {
+        this.windDirection = windDirection;
     }
 
-    public Integer getMeteostationId() {
-        return meteostationId;
+    public Meteostation getMeteostation() {
+        return meteostation;
     }
 
-    public void setMeteostationId(Integer meteostationId) {
-        this.meteostationId = meteostationId;
+    public void setMeteostation(Meteostation meteostation) {
+        this.meteostation = meteostation;
     }
 
     @Override
@@ -104,8 +114,8 @@ public class MeteostationData {
                 ", humidity=" + humidity +
                 ", windSpeed=" + windSpeed +
                 ", atmosphericPressure=" + atmosphericPressure +
-                ", wind_directionId=" + windDirectionId +
-                ", meteostationId=" + meteostationId +
+                ", windDirection=" + windDirection.getDirection() +
+                ", meteostation=" + meteostation.getId() +
                 ']';
     }
 }

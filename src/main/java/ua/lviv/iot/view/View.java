@@ -159,6 +159,7 @@ public class View {
 
     private void getAllCities() throws SQLException {
         System.out.println("\nCities:");
+        System.out.println("id" + "    " + "CityName");
         System.out.println(cityController.findAll());
     }
 
@@ -260,7 +261,8 @@ public class View {
         String buildingNumber = INPUT.next();
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
-        ManufacturerAddress manufacturerAddress = new ManufacturerAddress(buildingNumber, streetId);
+        Street street = streetController.findBy(streetId);
+        ManufacturerAddress manufacturerAddress = new ManufacturerAddress(buildingNumber, street);
         manufacturerAddressController.create(manufacturerAddress);
         System.out.println("Created");
     }
@@ -272,7 +274,8 @@ public class View {
         String buildingNumber = INPUT.next();
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
-        ManufacturerAddress manufacturerAddress = new ManufacturerAddress(id, buildingNumber, streetId);
+        Street street = streetController.findBy(streetId);
+        ManufacturerAddress manufacturerAddress = new ManufacturerAddress(id, buildingNumber, street);
         manufacturerAddressController.update(manufacturerAddress);
         System.out.println("Updated");
     }
@@ -338,11 +341,14 @@ public class View {
         String installationDate = INPUT.next();
         System.out.println("\nEnter meteostation location id");
         int meteostationLocationId = INPUT.nextInt();
+        MeteostationLocation meteostationLocation = meteostationLocationController.findBy(meteostationLocationId);
         System.out.println("\nEnter meteostation manufacturer id code");
         int meteostationManufacturerId = INPUT.nextInt();
+        MeteostationManufacturer meteostationManufacturer = meteostationManufacturerController.findBy(meteostationManufacturerId);
         System.out.println("\nEnter meteostation code");
         int dataIntervalId = INPUT.nextInt();
-        Meteostation meteostation = new Meteostation(meteostationCode, Date.valueOf(installationDate), meteostationLocationId, meteostationManufacturerId, dataIntervalId);
+        DataInterval dataInterval = dataIntervalController.findBy(dataIntervalId);
+        Meteostation meteostation = new Meteostation(meteostationCode, Date.valueOf(installationDate), meteostationLocation, meteostationManufacturer, dataInterval);
         meteostationController.create(meteostation);
         System.out.println("Created");
     }
@@ -356,11 +362,14 @@ public class View {
         String installationDate = INPUT.next();
         System.out.println("\nEnter meteostation location id");
         int meteostationLocationId = INPUT.nextInt();
+        MeteostationLocation meteostationLocation = meteostationLocationController.findBy(meteostationLocationId);
         System.out.println("\nEnter meteostation manufacturer id code");
         int meteostationManufacturerId = INPUT.nextInt();
+        MeteostationManufacturer meteostationManufacturer = meteostationManufacturerController.findBy(meteostationManufacturerId);
         System.out.println("\nEnter meteostation code");
         int dataIntervalId = INPUT.nextInt();
-        Meteostation meteostation = new Meteostation(id, meteostationCode, Date.valueOf(installationDate), meteostationLocationId, meteostationManufacturerId, dataIntervalId);
+        DataInterval dataInterval = dataIntervalController.findBy(dataIntervalId);
+        Meteostation meteostation = new Meteostation(id, meteostationCode, Date.valueOf(installationDate), meteostationLocation, meteostationManufacturer, dataInterval);
         meteostationController.update(meteostation);
         System.out.println("Updated");
     }
@@ -394,10 +403,12 @@ public class View {
         float atmosphericPressure = INPUT.nextFloat();
         System.out.println("\nEnter wind direction id");
         int windDirectionId = INPUT.nextInt();
+        WindDirection windDirection = windDirectionController.findBy(windDirectionId);
         System.out.println("\nEnter meteostation id");
         int meteostationId = INPUT.nextInt();
+        Meteostation meteostation = meteostationController.findBy(meteostationId);
         MeteostationData meteostationData = new MeteostationData(temperature, humidity, windSpeed,
-                atmosphericPressure, windDirectionId, meteostationId);
+                atmosphericPressure, windDirection, meteostation);
         meteostationDataController.create(meteostationData);
         System.out.println("Created");
     }
@@ -415,10 +426,12 @@ public class View {
         float atmosphericPressure = INPUT.nextFloat();
         System.out.println("\nEnter wind direction id");
         int windDirectionId = INPUT.nextInt();
+        WindDirection windDirection = windDirectionController.findBy(windDirectionId);
         System.out.println("\nEnter meteostation id");
         int meteostationId = INPUT.nextInt();
+        Meteostation meteostation = meteostationController.findBy(meteostationId);
         MeteostationData meteostationData = new MeteostationData(id, temperature, humidity, windSpeed,
-                atmosphericPressure, windDirectionId, meteostationId);
+                atmosphericPressure, windDirection, meteostation);
         meteostationDataController.update(meteostationData);
         System.out.println("Updated");
     }
@@ -446,7 +459,8 @@ public class View {
         String gpsLocation = INPUT.next();
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
-        MeteostationLocation meteostationLocation = new MeteostationLocation(gpsLocation, streetId);
+        Street street = streetController.findBy(streetId);
+        MeteostationLocation meteostationLocation = new MeteostationLocation(gpsLocation, street);
         meteostationLocationController.create(meteostationLocation);
         System.out.println("Created");
     }
@@ -458,7 +472,8 @@ public class View {
         String gpsLocation = INPUT.next();
         System.out.println("\nEnter street id");
         int streetId = INPUT.nextInt();
-        MeteostationLocation meteostationLocation = new MeteostationLocation(id, gpsLocation, streetId);
+        Street street = streetController.findBy(streetId);
+        MeteostationLocation meteostationLocation = new MeteostationLocation(id, gpsLocation, street);
         meteostationLocationController.update(meteostationLocation);
         System.out.println("Updated");
     }
@@ -490,7 +505,8 @@ public class View {
         String email = INPUT.next();
         System.out.println("\nEnter address id");
         int addressId = INPUT.nextInt();
-        MeteostationManufacturer meteostationManufacturer = new MeteostationManufacturer(name, phone, email, addressId);
+        ManufacturerAddress address = manufacturerAddressController.findBy(addressId);
+        MeteostationManufacturer meteostationManufacturer = new MeteostationManufacturer(name, phone, email, address);
         meteostationManufacturerController.create(meteostationManufacturer);
         System.out.println("Created");
     }
@@ -506,7 +522,8 @@ public class View {
         String email = INPUT.next();
         System.out.println("\nEnter address id");
         int addressId = INPUT.nextInt();
-        MeteostationManufacturer meteostationManufacturer = new MeteostationManufacturer(id, name, phone, email, addressId);
+        ManufacturerAddress address = manufacturerAddressController.findBy(addressId);
+        MeteostationManufacturer meteostationManufacturer = new MeteostationManufacturer(id, name, phone, email, address);
         meteostationManufacturerController.update(meteostationManufacturer);
         System.out.println("Updated");
     }
@@ -538,7 +555,8 @@ public class View {
         Boolean isRegular = INPUT.nextBoolean();
         System.out.println("\nEnter meteostation id");
         int meteostationId = INPUT.nextInt();
-        MeteostationService meteostationService = new MeteostationService(serviceDescription, Date.valueOf(serviceDate), isRegular, meteostationId);
+        Meteostation meteostation = meteostationController.findBy(meteostationId);
+        MeteostationService meteostationService = new MeteostationService(serviceDescription, Date.valueOf(serviceDate), isRegular, meteostation);
         meteostationServiceController.create(meteostationService);
         System.out.println("Created");
     }
@@ -554,7 +572,8 @@ public class View {
         Boolean isRegular = INPUT.nextBoolean();
         System.out.println("\nEnter meteostation id");
         int meteostationId = INPUT.nextInt();
-        MeteostationService meteostationService = new MeteostationService(id, serviceDescription, Date.valueOf(serviceDate), isRegular, meteostationId);
+        Meteostation meteostation = meteostationController.findBy(meteostationId);
+        MeteostationService meteostationService = new MeteostationService(id, serviceDescription, Date.valueOf(serviceDate), isRegular, meteostation);
         meteostationServiceController.update(meteostationService);
         System.out.println("Updated");
     }
@@ -582,7 +601,8 @@ public class View {
         String streetName = INPUT.next();
         System.out.println("\nEnter city ID");
         int cityId = INPUT.nextInt();
-        Street street = new Street(streetName, cityId);
+        City city = cityController.findBy(cityId);
+        Street street = new Street(streetName, city);
         streetController.create(street);
         System.out.println("Created");
     }
@@ -594,7 +614,8 @@ public class View {
         String streetName = INPUT.next();
         System.out.println("\nEnter city ID");
         int cityId = INPUT.nextInt();
-        Street street = new Street(id, streetName, cityId);
+        City city = cityController.findBy(cityId);
+        Street street = new Street(id, streetName, city);
         streetController.update(street);
         System.out.println("Updated");
     }

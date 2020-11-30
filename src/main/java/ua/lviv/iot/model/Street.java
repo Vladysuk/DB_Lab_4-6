@@ -11,19 +11,22 @@ public class Street {
     private Integer id;
     @Column(name = "street_name", length = 45)
     private String streetName;
-    @Column(name = "city_id")
-    private Integer cityId;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
 
     public Street() {}
 
-    public Street(String streetName, Integer cityId) {
-        this(-1, streetName, cityId);
+    public Street(String streetName, City city) {
+        this.streetName = streetName;
+        this.city = city;
     }
 
-    public Street(Integer id, String streetName, Integer cityId) {
+    public Street(Integer id, String streetName, City city) {
         this.id = id;
         this.streetName = streetName;
-        this.cityId = cityId;
+        this.city = city;
     }
 
     public Integer getId() {
@@ -42,12 +45,12 @@ public class Street {
         this.streetName = streetName;
     }
 
-    public Integer getCityId() {
-        return cityId;
+    public City getCity() {
+        return city;
     }
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
 
     @Override
@@ -55,7 +58,7 @@ public class Street {
         return "Street[" +
                 "id=" + id +
                 ", streetName='" + streetName + '\'' +
-                ", cityId=" + cityId +
+                ", city=" + city +
                 ']';
     }
 }

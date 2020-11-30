@@ -25,7 +25,6 @@ public abstract class BaseDAO<T, ID> implements DAOTemplate<T, ID> {
         session.getTransaction().commit();
     }
 
-    //    TODO: Select from?
     @Override
     public List<T> getAll(Session session) throws SQLException {
         List<T> entities = new LinkedList<>();

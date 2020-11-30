@@ -15,28 +15,39 @@ public class Meteostation {
     private String meteostationCode;
     @Column(name = "installation_date")
     private Date installationDate;
-    @Column(name = "meteostation_location_id")
-    private Integer meteostationLocationId;
-    @Column(name = "meteostation_manufacturer_id")
-    private Integer meteostationManufacturerId;
-    @Column(name = "data_interval_id")
-    private Integer dataIntervalId;
+
+    @OneToOne
+    @JoinColumn(name = "meteostation_location_id")
+    private MeteostationLocation meteostationLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "meteostation_manufacturer_id")
+    private MeteostationManufacturer meteostationManufacturer;
+
+    @ManyToOne
+    @JoinColumn(name = "data_interval_id")
+    private DataInterval dataInterval;
 
     public Meteostation() {
     }
 
-    public Meteostation(String meteostationCode, Date installationDate, Integer meteostationLocationId, Integer meteostationManufacturerId, Integer dataIntervalId) {
-        this(-1, meteostationCode, installationDate, meteostationLocationId, meteostationManufacturerId, dataIntervalId);
+    public Meteostation(String meteostationCode, Date installationDate, MeteostationLocation meteostationLocation,
+                        MeteostationManufacturer meteostationManufacturer, DataInterval dataInterval) {
+        this.meteostationCode = meteostationCode;
+        this.installationDate = installationDate;
+        this.meteostationLocation = meteostationLocation;
+        this.meteostationManufacturer = meteostationManufacturer;
+        this.dataInterval = dataInterval;
     }
 
-    public Meteostation(Integer id, String meteostationCode, Date installationDate, Integer meteostationLocationId,
-                        Integer meteostationManufacturerId, Integer dataIntervalId) {
+    public Meteostation(Integer id, String meteostationCode, Date installationDate, MeteostationLocation meteostationLocation,
+                        MeteostationManufacturer meteostationManufacturer, DataInterval dataInterval) {
         this.id = id;
         this.meteostationCode = meteostationCode;
         this.installationDate = installationDate;
-        this.meteostationLocationId = meteostationLocationId;
-        this.meteostationManufacturerId = meteostationManufacturerId;
-        this.dataIntervalId = dataIntervalId;
+        this.meteostationLocation = meteostationLocation;
+        this.meteostationManufacturer = meteostationManufacturer;
+        this.dataInterval = dataInterval;
     }
 
     public Integer getId() {
@@ -63,28 +74,28 @@ public class Meteostation {
         this.installationDate = installationDate;
     }
 
-    public Integer getMeteostationLocationId() {
-        return meteostationLocationId;
+    public MeteostationLocation getMeteostationLocation() {
+        return meteostationLocation;
     }
 
-    public void setMeteostationLocationId(Integer meteostationLocationId) {
-        this.meteostationLocationId = meteostationLocationId;
+    public void setMeteostationLocation(MeteostationLocation meteostationLocation) {
+        this.meteostationLocation = meteostationLocation;
     }
 
-    public Integer getMeteostationManufacturerId() {
-        return meteostationManufacturerId;
+    public MeteostationManufacturer getMeteostationManufacturer() {
+        return meteostationManufacturer;
     }
 
-    public void setMeteostationManufacturerId(Integer meteostationManufacturerId) {
-        this.meteostationManufacturerId = meteostationManufacturerId;
+    public void setMeteostationManufacturer(MeteostationManufacturer meteostationManufacturer) {
+        this.meteostationManufacturer = meteostationManufacturer;
     }
 
-    public Integer getDataIntervalId() {
-        return dataIntervalId;
+    public DataInterval getDataInterval() {
+        return dataInterval;
     }
 
-    public void setDataIntervalId(Integer dataIntervalId) {
-        this.dataIntervalId = dataIntervalId;
+    public void setDataInterval(DataInterval dataInterval) {
+        this.dataInterval = dataInterval;
     }
 
     @Override
@@ -93,9 +104,9 @@ public class Meteostation {
                 "id=" + id +
                 ", meteostationCode='" + meteostationCode + '\'' +
                 ", installationDate=" + installationDate +
-                ", meteostationLocationId=" + meteostationLocationId +
-                ", meteostationManufacturerId=" + meteostationManufacturerId +
-                ", dataIntervalId=" + dataIntervalId +
+                ", meteostationLocation=" + meteostationLocation +
+                ", meteostationManufacturer=" + meteostationManufacturer +
+                ", dataInterval=" + dataInterval +
                 ']';
     }
 }

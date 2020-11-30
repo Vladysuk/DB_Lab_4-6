@@ -16,6 +16,7 @@
         <mapping class="ua.lviv.iot.model.City" />
         <mapping class="ua.lviv.iot.model.DataInterval" />
         <mapping class="ua.lviv.iot.model.ManufacturerAddress" />
+        <mapping class="ua.lviv.iot.model.MeteostationManufacturer" />
         <mapping class="ua.lviv.iot.model.Meteostation" />
         <mapping class="ua.lviv.iot.model.MeteostationData" />
         <mapping class="ua.lviv.iot.model.MeteostationLocation" />

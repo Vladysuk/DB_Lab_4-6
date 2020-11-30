@@ -12,20 +12,23 @@ public class MeteostationLocation {
     private Integer id;
     @Column(name = "gps_location", length = 45)
     private String gpsLocation;
-    @Column(name = "street_id")
-    private Integer streetId;
+
+    @ManyToOne
+    @JoinColumn(name = "street_id", nullable = false)
+    private Street street;
 
     public MeteostationLocation() {
     }
 
-    public MeteostationLocation(String gpsLocation, Integer streetId) {
-        this(-1, gpsLocation, streetId);
+    public MeteostationLocation(String gpsLocation, Street street) {
+        this.gpsLocation = gpsLocation;
+        this.street = street;
     }
 
-    public MeteostationLocation(Integer id, String gpsLocation, Integer streetId) {
+    public MeteostationLocation(Integer id, String gpsLocation, Street street) {
         this.id = id;
         this.gpsLocation = gpsLocation;
-        this.streetId = streetId;
+        this.street = street;
     }
 
     public Integer getId() {
@@ -44,12 +47,12 @@ public class MeteostationLocation {
         this.gpsLocation = gpsLocation;
     }
 
-    public Integer getStreetId() {
-        return streetId;
+    public Street getStreet() {
+        return street;
     }
 
-    public void setStreetId(Integer streetId) {
-        this.streetId = streetId;
+    public void setStreet(Street street) {
+        this.street = street;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class MeteostationLocation {
         return "MeteostationLocation[" +
                 "id=" + id +
                 ", gpsLocation='" + gpsLocation + '\'' +
-                ", streetId=" + streetId +
+                ", street=" + street +
                 ']';
     }
 }

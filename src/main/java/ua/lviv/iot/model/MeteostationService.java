@@ -17,22 +17,27 @@ public class MeteostationService {
     private Date serviceDate;
     @Column(name = "is_regular")
     private Boolean isRegular;
-    @Column(name = "meteostation_id")
-    private Integer meteostationId;
+
+    @ManyToOne
+    @JoinColumn(name = "meteostation_id")
+    private Meteostation meteostation;
 
     public MeteostationService() {
     }
 
-    public MeteostationService(String serviceDescription, Date serviceDate, Boolean isRegular, Integer meteostationId) {
-        this(-1, serviceDescription, serviceDate, isRegular, meteostationId);
+    public MeteostationService(String serviceDescription, Date serviceDate, Boolean isRegular, Meteostation meteostation) {
+        this.serviceDescription = serviceDescription;
+        this.serviceDate = serviceDate;
+        this.isRegular = isRegular;
+        this.meteostation = meteostation;
     }
 
-    public MeteostationService(Integer id, String serviceDescription, Date serviceDate, Boolean isRegular, Integer meteostationId) {
+    public MeteostationService(Integer id, String serviceDescription, Date serviceDate, Boolean isRegular, Meteostation meteostation) {
         this.id = id;
         this.serviceDescription = serviceDescription;
         this.serviceDate = serviceDate;
         this.isRegular = isRegular;
-        this.meteostationId = meteostationId;
+        this.meteostation = meteostation;
     }
 
     public Integer getId() {
@@ -67,12 +72,12 @@ public class MeteostationService {
         isRegular = regular;
     }
 
-    public Integer getMeteostationId() {
-        return meteostationId;
+    public Meteostation getMeteostation() {
+        return meteostation;
     }
 
-    public void setMeteostationId(Integer meteostationId) {
-        this.meteostationId = meteostationId;
+    public void setMeteostation(Meteostation meteostation) {
+        this.meteostation = meteostation;
     }
 
     @Override
@@ -82,7 +87,7 @@ public class MeteostationService {
                 ", serviceDescription='" + serviceDescription + '\'' +
                 ", serviceDate=" + serviceDate +
                 ", isRegular=" + isRegular +
-                ", meteostationId=" + meteostationId +
+                ", meteostation=" + meteostation +
                 ']';
     }
 }

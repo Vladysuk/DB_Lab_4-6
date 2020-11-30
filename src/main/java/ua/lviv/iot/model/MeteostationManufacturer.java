@@ -16,22 +16,27 @@ public class MeteostationManufacturer {
     private String phone;
     @Column(name = "email", length = 45)
     private String email;
-    @Column(name = "address_id")
-    private Integer addressId;
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private ManufacturerAddress address;
 
     public MeteostationManufacturer() {
     }
 
-    public MeteostationManufacturer(String name, String phone, String email, Integer addressId) {
-        this(-1, name, phone, email, addressId);
+    public MeteostationManufacturer(String name, String phone, String email, ManufacturerAddress address) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
     }
 
-    public MeteostationManufacturer(Integer id, String name, String phone, String email, Integer address_id) {
+    public MeteostationManufacturer(Integer id, String name, String phone, String email, ManufacturerAddress address) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.addressId = address_id;
+        this.address = address;
     }
 
     public Integer getId() {
@@ -66,12 +71,12 @@ public class MeteostationManufacturer {
         this.email = email;
     }
 
-    public Integer getAddressId() {
-        return addressId;
+    public ManufacturerAddress getAddress() {
+        return address;
     }
 
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
+    public void setAddress(ManufacturerAddress address) {
+        this.address = address;
     }
 
     @Override
@@ -81,7 +86,7 @@ public class MeteostationManufacturer {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", address_id=" + addressId +
+                ", address=" + address +
                 ']';
     }
 }

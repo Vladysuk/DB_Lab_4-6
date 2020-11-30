@@ -13,20 +13,22 @@ public class ManufacturerAddress {
     private Integer id;
     @Column(name = "building_number", length = 20)
     private  String buildingNumber;
-    @Column(name = "street_id")
-    private Integer streetId;
+
+    @ManyToOne
+    @JoinColumn(name = "street_id")
+    private Street street;
 
     public ManufacturerAddress() {
     }
 
-    public ManufacturerAddress(String buildingNumber, Integer streetId) {
-        this(-1, buildingNumber, streetId);
+    public ManufacturerAddress(String buildingNumber, Street street) {
+        this.buildingNumber = buildingNumber;
+        this.street = street;
     }
-
-    public ManufacturerAddress(Integer id, String buildingNumber, Integer streetId) {
+    public ManufacturerAddress(Integer id, String buildingNumber, Street street) {
         this.id = id;
         this.buildingNumber = buildingNumber;
-        this.streetId = streetId;
+        this.street = street;
     }
 
     public Integer getId() {
@@ -45,12 +47,12 @@ public class ManufacturerAddress {
         this.buildingNumber = buildingNumber;
     }
 
-    public Integer getStreetId() {
-        return streetId;
+    public Street getStreet() {
+        return street;
     }
 
-    public void setStreetId(Integer streetId) {
-        this.streetId = streetId;
+    public void setStreet(Street street) {
+        this.street = street;
     }
 
     @Override
@@ -58,8 +60,7 @@ public class ManufacturerAddress {
         return "ManufacturerAddress[" +
                 "id=" + id +
                 ", buildingNumber='" + buildingNumber + '\'' +
-                ", streetId=" + streetId +
+                ", street=" + street +
                 ']';
     }
-
 }

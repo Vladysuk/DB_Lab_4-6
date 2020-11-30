@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Idea
+.idea/
+DB_LAB_4-5.iml

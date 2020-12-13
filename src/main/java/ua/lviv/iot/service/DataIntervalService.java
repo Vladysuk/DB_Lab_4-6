@@ -1,10 +1,20 @@
 package ua.lviv.iot.service;
 
-import ua.lviv.iot.DAO.DataIntervalDAO;
-import ua.lviv.iot.model.DataInterval;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import ua.lviv.iot.domain.DataInterval;
+import ua.lviv.iot.repository.DataIntervalRepository;
 
-public class DataIntervalService extends BaseService<DataInterval, Integer, DataIntervalDAO> {
-    public DataIntervalService() {
-        super(DataIntervalDAO.class);
+@Service
+public class DataIntervalService extends BaseService<DataInterval, Integer> {
+
+    @Autowired
+    DataIntervalRepository dataIntervalRepository;
+
+    @Override
+    public JpaRepository<DataInterval, Integer> getRepository() {
+        return dataIntervalRepository;
     }
+
 }

@@ -1,21 +1,23 @@
 package ua.lviv.iot.service;
 
 import org.hibernate.Session;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface ServiceTemplate<T, ID> {
 
-    void create(T entity, Session session) throws SQLException;
+    void create(T entity) throws SQLException;
 
-    List<T> findAll(Session session) throws SQLException;
+    List<T> findAll() throws SQLException;
 
-    T findBy(ID id, Session session) throws SQLException;
+    T findBy(ID id) throws SQLException;
 
-    void update(T entity, Session session) throws SQLException;
+    void update(T entity) throws SQLException;
 
-    void deleteBy(ID id, Session session) throws SQLException;
+    void deleteBy(ID id) throws SQLException;
 
+    JpaRepository<T, ID> getRepository();
 }
 

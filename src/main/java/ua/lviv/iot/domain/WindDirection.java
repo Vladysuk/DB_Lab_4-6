@@ -1,8 +1,9 @@
-package ua.lviv.iot.model;
+package ua.lviv.iot.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Entity(name = "WindDirection")
+@Entity
 @Table(name = "wind_direction")
 public class WindDirection {
     @Id
@@ -48,4 +49,19 @@ public class WindDirection {
                 ", direction='" + direction + '\'' +
                 ']';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WindDirection that = (WindDirection) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(direction, that.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, direction);
+    }
+
 }

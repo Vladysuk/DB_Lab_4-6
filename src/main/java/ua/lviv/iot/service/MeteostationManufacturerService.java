@@ -1,10 +1,20 @@
 package ua.lviv.iot.service;
 
-import ua.lviv.iot.DAO.MeteostationManufacturerDAO;
-import ua.lviv.iot.model.MeteostationManufacturer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import ua.lviv.iot.domain.MeteostationManufacturer;
+import ua.lviv.iot.repository.MeteostationManufacturerRepository;
 
-public class MeteostationManufacturerService extends BaseService<MeteostationManufacturer, Integer, MeteostationManufacturerDAO> {
-    public MeteostationManufacturerService() {
-        super(MeteostationManufacturerDAO.class);
+@Service
+public class MeteostationManufacturerService extends BaseService<MeteostationManufacturer, Integer> {
+
+    @Autowired
+    MeteostationManufacturerRepository meteostationManufacturerRepository;
+
+    @Override
+    public JpaRepository<MeteostationManufacturer, Integer> getRepository() {
+        return meteostationManufacturerRepository;
     }
+
 }

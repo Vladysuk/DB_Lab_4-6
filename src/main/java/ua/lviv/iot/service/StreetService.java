@@ -1,10 +1,20 @@
 package ua.lviv.iot.service;
 
-import ua.lviv.iot.DAO.StreetDAO;
-import ua.lviv.iot.model.Street;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import ua.lviv.iot.domain.Street;
+import ua.lviv.iot.repository.StreetRepository;
 
-public class StreetService extends BaseService<Street, Integer, StreetDAO> {
-    public StreetService() {
-        super(StreetDAO.class);
+@Service
+public class StreetService extends BaseService<Street, Integer> {
+
+    @Autowired
+    StreetRepository streetRepository;
+
+    @Override
+    public JpaRepository<Street, Integer> getRepository() {
+        return streetRepository;
     }
+
 }

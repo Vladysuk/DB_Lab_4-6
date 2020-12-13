@@ -1,4 +1,4 @@
-package ua.lviv.iot.model;
+package ua.lviv.iot.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
-@Entity(name = "City")
+@Entity
 @Table(name = "city")
 public class City {
     @Id
@@ -50,4 +51,17 @@ public class City {
         return id  + " " + cityName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return Objects.equals(id, city.id) &&
+                Objects.equals(cityName, city.cityName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cityName);
+    }
 }

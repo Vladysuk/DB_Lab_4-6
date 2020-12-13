@@ -1,9 +1,10 @@
-package ua.lviv.iot.model;
+package ua.lviv.iot.domain;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Entity(name = "DataInterval")
+@Entity
 @Table(name = "data_interval")
 public class DataInterval {
     @Id
@@ -71,6 +72,22 @@ public class DataInterval {
                 ", minutes=" + minutes +
                 ", seconds=" + seconds +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DataInterval that = (DataInterval) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(hours, that.hours) &&
+                Objects.equals(minutes, that.minutes) &&
+                Objects.equals(seconds, that.seconds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, hours, minutes, seconds);
     }
 
 }

@@ -3,46 +3,36 @@ package ua.lviv.iot.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.hibernate.Session;
-import ua.lviv.iot.DAO.DAOTemplate;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@SuppressWarnings({ "unchecked", "deprecation" })
-public abstract class BaseService<T, ID, DAO> implements ServiceTemplate<T, ID> {
+public abstract class BaseService<T, ID> implements ServiceTemplate<T, ID> {
 
-    private DAOTemplate<T, ID> dataaccess;
+    @Override
+    public abstract JpaRepository<T, ID> getRepository();
 
-    public BaseService(Class<DAO> currentClass) {
-        try {
-            dataaccess = (DAOTemplate<T, ID>) currentClass.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void create(T entity) throws SQLException {
+        getRepository().save(entity);
     }
 
     @Override
-    public void create(T entity, Session session) throws SQLException {
-        dataaccess.create(entity, session);
+    public List<T> findAll() throws SQLException {
+        return getRepository().findAll();
     }
 
     @Override
-    public List<T> findAll(Session session) throws SQLException {
-        return dataaccess.getAll(session);
+    public T findBy(ID id) throws SQLException {
+        return (T) getRepository().findById(id).orElse(null);
     }
 
     @Override
-    public T findBy(ID id, Session session) throws SQLException {
-        return dataaccess.getBy(id, session);
+    public void update(T entity) throws SQLException {
+        getRepository().save(entity);
     }
 
     @Override
-    public void update(T entity, Session session) throws SQLException {
-         dataaccess.update(entity, session);
+    public void deleteBy(ID id) throws SQLException {
+        getRepository().deleteById(id);
     }
-
-    @Override
-    public void deleteBy(ID id, Session session) throws SQLException {
-         dataaccess.deleteBy(id, session);
-    }
-
 
 }

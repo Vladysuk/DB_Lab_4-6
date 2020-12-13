@@ -1,10 +1,20 @@
 package ua.lviv.iot.service;
 
-import ua.lviv.iot.DAO.ManufacturerAddressDAO;
-import ua.lviv.iot.model.ManufacturerAddress;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import ua.lviv.iot.domain.ManufacturerAddress;
+import ua.lviv.iot.repository.ManufacturerAddressRepository;
 
-public class ManufacturerAddressService extends BaseService<ManufacturerAddress, Integer, ManufacturerAddressDAO> {
-    public ManufacturerAddressService() {
-        super(ManufacturerAddressDAO.class);
+@Service
+public class ManufacturerAddressService extends BaseService<ManufacturerAddress, Integer> {
+
+    @Autowired
+    ManufacturerAddressRepository manufacturerAddressRepository;
+
+    @Override
+    public JpaRepository<ManufacturerAddress, Integer> getRepository() {
+        return manufacturerAddressRepository;
     }
+
 }

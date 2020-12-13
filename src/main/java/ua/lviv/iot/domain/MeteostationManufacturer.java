@@ -1,9 +1,10 @@
-package ua.lviv.iot.model;
+package ua.lviv.iot.domain;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Entity(name = "MeteostationManufacturer")
+@Entity
 @Table(name = "meteostation_manufacturer")
 public class MeteostationManufacturer {
     @Id
@@ -88,5 +89,22 @@ public class MeteostationManufacturer {
                 ", email='" + email + '\'' +
                 ", address=" + address +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MeteostationManufacturer that = (MeteostationManufacturer) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, phone, email, address);
     }
 }

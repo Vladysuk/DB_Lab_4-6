@@ -1,8 +1,9 @@
-package ua.lviv.iot.model;
+package ua.lviv.iot.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Entity(name = "MeteostationData")
+@Entity
 @Table(name = "meteostation_data")
 public class MeteostationData {
     @Id
@@ -117,5 +118,24 @@ public class MeteostationData {
                 ", windDirection=" + windDirection.getDirection() +
                 ", meteostation=" + meteostation.getId() +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MeteostationData that = (MeteostationData) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(temperature, that.temperature) &&
+                Objects.equals(humidity, that.humidity) &&
+                Objects.equals(windSpeed, that.windSpeed) &&
+                Objects.equals(atmosphericPressure, that.atmosphericPressure) &&
+                Objects.equals(windDirection, that.windDirection) &&
+                Objects.equals(meteostation, that.meteostation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, temperature, humidity, windSpeed, atmosphericPressure, windDirection, meteostation);
     }
 }

@@ -1,5 +1,7 @@
 package ua.lviv.iot.controller;
 
+import ua.lviv.iot.service.ServiceTemplate;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,5 +16,7 @@ public interface ControllerTemplate<T, ID> {
     void update(T entity) throws SQLException;
 
     void deleteBy(ID id) throws SQLException;
+
+    ServiceTemplate<T, ID> getService();
 
 }

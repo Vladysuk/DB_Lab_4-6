@@ -1,10 +1,22 @@
 package ua.lviv.iot.controller;
 
-import ua.lviv.iot.model.MeteostationData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ua.lviv.iot.domain.MeteostationData;
 import ua.lviv.iot.service.MeteostationDataService;
+import ua.lviv.iot.service.ServiceTemplate;
 
-public class MeteostationDataController extends BaseController<MeteostationData, Integer, MeteostationDataService> {
-    public MeteostationDataController() {
-        super(MeteostationDataService.class);
+@RestController
+@RequestMapping("/meteostation_data")
+public class MeteostationDataController extends BaseController<MeteostationData, Integer> {
+
+    @Autowired
+    MeteostationDataService meteostationDataService;
+
+    @Override
+    public ServiceTemplate<MeteostationData, Integer> getService(){
+        return meteostationDataService;
     }
+
 }

@@ -8,7 +8,7 @@ import ua.lviv.iot.service.ServiceTemplate;
 import ua.lviv.iot.service.WindDirectionService;
 
 @RestController
-@RequestMapping("/wind_direction")
+@RequestMapping("/wind-direction")
 public class WindDirectionController extends BaseController<WindDirection, Integer> {
 
     @Autowired

@@ -8,7 +8,7 @@ import ua.lviv.iot.service.MeteostationLocationService;
 import ua.lviv.iot.service.ServiceTemplate;
 
 @RestController
-@RequestMapping("/meteostation_location")
+@RequestMapping("/meteostation-location")
 public class MeteostationLocationController extends BaseController<MeteostationLocation, Integer> {
 
     @Autowired

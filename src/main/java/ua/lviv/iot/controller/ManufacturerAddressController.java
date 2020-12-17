@@ -8,7 +8,7 @@ import ua.lviv.iot.service.ManufacturerAddressService;
 import ua.lviv.iot.service.ServiceTemplate;
 
 @RestController
-@RequestMapping("/manufacturer_address")
+@RequestMapping("/manufacturer-address")
 public class ManufacturerAddressController extends BaseController<ManufacturerAddress, Integer> {
 
     @Autowired

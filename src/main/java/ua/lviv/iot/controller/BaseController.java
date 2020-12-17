@@ -1,9 +1,8 @@
 package ua.lviv.iot.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ua.lviv.iot.service.ServiceTemplate;
 
 import java.sql.SQLException;
@@ -14,35 +13,49 @@ public abstract class BaseController<T, ID> implements ControllerTemplate<T, ID>
     @Override
     public abstract ServiceTemplate<T, ID> getService();
 
-
     @Override
-    @PostMapping("")
-    public void create(T entity) throws SQLException{
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+    public T create(final @RequestBody T entity) throws SQLException{
         getService().create(entity);
+        return entity;
     }
 
     @Override
-    @GetMapping("")
+    @GetMapping
     public List<T> findAll() throws SQLException {
         return getService().findAll();
     }
 
     @Override
     @GetMapping("/{id}")
-    public T findBy(ID id) throws SQLException {
-        return (T) getService().findBy(id);
+    public ResponseEntity<T> findBy(final @PathVariable("id") ID id) throws SQLException {
+        if (getService().findBy(id) == null){
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(getService().findBy(id));
+        }
     }
 
     @Override
     @PutMapping("/{id}")
-    public void update(T entity) throws SQLException {
-        getService().update(entity);
+    public ResponseEntity<T> update(final @PathVariable("id") ID id, final @RequestBody T entity) throws SQLException {
+        if (getService().findBy(id) == null){
+            return ResponseEntity.notFound().build();
+        } else {
+            getService().update(entity);
+            return ResponseEntity.ok(entity);
+        }
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public void deleteBy(ID id) throws SQLException {
-        getService().deleteBy(id);
+    public ResponseEntity<T> deleteBy(final @PathVariable("id") ID id) throws SQLException {
+        if (getService().findBy(id) == null){
+            return ResponseEntity.notFound().build();
+        } else {
+            getService().deleteBy(id);
+            return ResponseEntity.ok().build();
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package ua.lviv.iot.controller;
 
+import org.springframework.http.ResponseEntity;
 import ua.lviv.iot.service.ServiceTemplate;
 
 import java.sql.SQLException;
@@ -7,15 +8,15 @@ import java.util.List;
 
 public interface ControllerTemplate<T, ID> {
 
-    void create(T entity) throws SQLException;
+    T create(T entity) throws SQLException;
 
     List<T> findAll() throws SQLException;
 
-    T findBy(ID id) throws SQLException;
+    ResponseEntity<T> findBy(ID id) throws SQLException;
 
-    void update(T entity) throws SQLException;
+    ResponseEntity<T> update(ID id, T entity) throws SQLException;
 
-    void deleteBy(ID id) throws SQLException;
+    ResponseEntity<T> deleteBy(ID id) throws SQLException;
 
     ServiceTemplate<T, ID> getService();
 

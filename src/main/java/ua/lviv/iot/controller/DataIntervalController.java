@@ -8,7 +8,7 @@ import ua.lviv.iot.service.DataIntervalService;
 import ua.lviv.iot.service.ServiceTemplate;
 
 @RestController
-@RequestMapping("/data_interval")
+@RequestMapping("/data-interval")
 public class DataIntervalController extends BaseController<DataInterval, Integer> {
 
     @Autowired
